@@ -1,4 +1,4 @@
-import Calculadora from "./components/calculadora";
+import Calculadora from "./components/Calculadora";
 
 function App() {
   return (
