@@ -43,22 +43,28 @@ const Calculadora = () => {
   }
 
   function handleButton(value) {
-    setShowResult(false);
     if (value === "AC") {
       setDisplay("");
+      setShowResult(false);
     } else if (value === "C") {
       setDisplay(display.slice(0, -1));
+      setShowResult(false);
     } else if (isOperator(value)) {
-      if (display === "" || isOperator(display.slice(-1))) {
+      if (showResult) {
+        setDisplay(display + value);
+        setShowResult(false);
+      } else if (display === "" || isOperator(display.slice(-1))) {
         return;
+      } else {
+        setDisplay(display + value);
       }
-      setDisplay(display + value);
     } else if (value === "=") {
       calculateResult();
     } else if (display.length >= maxLimit) {
       alert(`Máximo de caracteres atingido: ${maxLimit}`);
     } else {
       setDisplay(display + value);
+      setShowResult(false);
     }
   }
 
